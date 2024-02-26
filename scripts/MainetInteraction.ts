@@ -1,4 +1,3 @@
-import { parseEther } from "ethers";
 import { ethers } from "hardhat";
 const helpers = require("@nomicfoundation/hardhat-toolbox/network-helpers");
 
@@ -32,12 +31,13 @@ const main = async () => {
 
     const deadline = Math.floor(Date.now() / 1000) + (60 * 10);
 
+    // INTERACTION 1
+
     console.log("----------------------------Transaction swapExactTokensForTokensSupportingFeeOnTransferTokens-------------------------------------")
 
 
     console.log("USDC Balance:", ethers.formatUnits(usdcBal, 6))
     console.log("DAI Balance:", ethers.formatUnits(daiBal, 18));
-    // INTERACTION 1
     const swapTx = await ROUTER.connect(impersonatedSigner).swapExactTokensForTokensSupportingFeeOnTransferTokens(
         amountOut,
         0,
@@ -82,30 +82,14 @@ const main = async () => {
     await swapTXTwo.wait()
     console.log("-----------------------------------------------------------------")
 
-
-    // Uncomment this if you are using the swap tokens for ETH
-    // const ethBalAfterSwap = await impersonatedSigner.provider.getBalance(wethHolder);
-    // const wethBalAfterSwap = await WETH.balanceOf(impersonatedSigner.address);
-
     const ethBalAfterSwap = await impersonatedSigner.provider.getBalance(USDCHolder);
-    const daiBalAfterSwap = await DAI.balanceOf(impersonatedSigner.address);
-
-
-    // Uncomment this if you are using the swap tokens for ETH
-    // console.log("weth balance before swap", ethers.formatUnits(wethBalAfterSwap, 18));
-    // console.log("eth balance after swap", ethers.formatUnits(ethBalAfterSwap, 18));
+    const daiBalAfterSwap = await DAI.balanceOf(impersonatedSigner.address);  
     
     console.log("eth balance after swap", ethers.formatUnits(ethBalAfterSwap, 18) );
     console.log("dai balance after swap", ethers.formatUnits(daiBalAfterSwap, 18) );
 
     console.log("----------------------------Transaction swapExactETHForTokens Ended-------------------------------------")
 
-    /*
-
-    console.log("usdc balance before swap", Number(usdcBal._hex));
-    // console.log("weth balance before swap", Number(wethBal._hex));
-    console.log("eth balance before swap", Number(ethBal._hex));
-    */
 }
 
 main().catch((error) => {
