@@ -1,13 +1,2 @@
-# Sample Hardhat Project
-
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
-```
+Below is the screenshot of the result from the mainet fork 
+![MainetINteraction](https://github.com/sogobanwo/MaintNetForking-Assessment-/assets/99739569/f5ffde02-157f-4bfc-a388-a8d741a397cd)
